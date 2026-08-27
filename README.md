@@ -26,7 +26,7 @@ Components에서 App과 AboutView의 컴포넌트 구조를 확인했다.
 #### 실행 결과
 
 ![결과1](hands_on/과제0실행결과.png)
-![결과0-1](ands_on/과제0실행결과1.png)
+![결과0-1](hands_on/과제0실행결과1.png)
 ![결과0-2](hands_on/과제0실행결과2.png)
 
 ### 2. 과제 1 날씨 데이터 출력
