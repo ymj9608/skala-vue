@@ -7,10 +7,10 @@ export const useConfigStore = defineStore('config', () => {
 
   const unitSymbol = computed(() => {
     if (unit.value === 'fahrenheit') {
-      return '℉'
+      return '°F'
     }
 
-    return '℃'
+    return '°C'
   })
 
   const weatherStatusButtonText = computed(() => {

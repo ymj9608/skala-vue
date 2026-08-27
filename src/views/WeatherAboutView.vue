@@ -1,11 +1,12 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import AppIcon from '../components/exercise/AppIcon.vue'
 </script>
 
 <template>
   <main class="about-view">
     <section class="about-card">
-      <h2>ℹ️ 서비스 소개</h2>
+      <h2><AppIcon name="info" :size="22" /> 서비스 소개</h2>
       <p>Vue 3와 Vue Router를 이용해 제작한 지역별 날씨 대시보드입니다.</p>
       <ul>
         <li>도시 이름을 입력하여 원하는 지역 검색</li>
@@ -32,6 +33,9 @@ import { RouterLink } from 'vue-router'
 }
 
 h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 18px;
   padding-bottom: 12px;
   border-bottom: 1px solid #dfe6eb;

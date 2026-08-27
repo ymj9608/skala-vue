@@ -1,5 +1,6 @@
 <script setup>
 import { useConfigStore } from '../../stores/configStore.js'
+import AppIcon from './AppIcon.vue'
 
 const configStore = useConfigStore()
 </script>
@@ -7,8 +8,11 @@ const configStore = useConfigStore()
 <template>
   <div class="unit-toggler">
     <p>날씨 단위: {{ configStore.unitSymbol }}</p>
-    <el-button type="primary" size="small" @click="configStore.toggleUnit">단위 변경</el-button>
-    <el-button type="info" size="small" @click="configStore.toggleWeatherStatus">
+    <el-button type="primary" size="small" @click="configStore.toggleUnit">
+      단위 변경
+      <AppIcon name="arrow" :size="14" />
+    </el-button>
+    <el-button class="status-button" size="small" @click="configStore.toggleWeatherStatus">
       {{ configStore.weatherStatusButtonText }}
     </el-button>
   </div>
@@ -23,7 +27,22 @@ const configStore = useConfigStore()
 
 p {
   margin: 0;
-  color: #587083;
+  color: #e8f6ff;
   white-space: nowrap;
+}
+
+.unit-toggler :deep(.el-button span) {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-button {
+  --el-button-bg-color: rgba(255, 255, 255, 0.14);
+  --el-button-border-color: rgba(255, 255, 255, 0.48);
+  --el-button-text-color: white;
+  --el-button-hover-bg-color: rgba(255, 255, 255, 0.24);
+  --el-button-hover-border-color: white;
+  --el-button-hover-text-color: white;
 }
 </style>

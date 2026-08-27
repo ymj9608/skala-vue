@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import axios from 'axios'
 import { RouterLink, useRoute } from 'vue-router'
 import { useConfigStore } from '../stores/configStore.js'
+import AppIcon from '../components/exercise/AppIcon.vue'
 
 const route = useRoute()
 const configStore = useConfigStore()
@@ -124,7 +125,7 @@ onMounted(() => {
 <template>
   <main class="detail-view">
     <section class="detail-card">
-      <h2>🗺️ 지도 선택 지역 상세 날씨</h2>
+      <h2><AppIcon name="map" :size="22" /> 지도 선택 지역 상세 날씨</h2>
 
       <el-skeleton v-if="isLoading" class="api-message" :rows="5" animated />
 
@@ -135,7 +136,7 @@ onMounted(() => {
 
       <template v-else-if="selectedWeather">
         <div class="weather-detail">
-          <p>📍 선택 지역: {{ selectedWeather.name }}</p>
+          <p><AppIcon name="pin" :size="17" /> 선택 지역: {{ selectedWeather.name }}</p>
           <p>위도: {{ route.params.lat }}</p>
           <p>경도: {{ route.params.lon }}</p>
           <p>실시간 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
@@ -147,7 +148,7 @@ onMounted(() => {
         </div>
 
         <section class="extra-section">
-          <h3>🕒 시간대별 예보</h3>
+          <h3><AppIcon name="clock" :size="19" /> 시간대별 예보</h3>
           <div class="forecast-list">
             <div v-for="forecast in forecastList" :key="forecast.date" class="forecast-item">
               <p>{{ forecast.date }}</p>
@@ -158,7 +159,7 @@ onMounted(() => {
         </section>
 
         <section v-if="airQuality" class="extra-section">
-          <h3>🌿 선택 지역 대기질</h3>
+          <h3><AppIcon name="leaf" :size="19" /> 선택 지역 대기질</h3>
           <div class="air-quality">
             <p>통합 대기질: {{ airQuality.us_aqi }} ({{ airQualityLabel }})</p>
             <p>미세먼지 PM10: {{ airQuality.pm10 }}㎍/㎥</p>
@@ -186,6 +187,9 @@ onMounted(() => {
 }
 
 h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 18px;
   padding-bottom: 12px;
   border-bottom: 1px solid #dfe6eb;
@@ -202,6 +206,9 @@ h2 {
 }
 
 .weather-detail p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 3px 0;
 }
 
@@ -225,6 +232,9 @@ h2 {
 }
 
 .extra-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 0 0 12px;
   color: #294b66;
   font-size: 17px;

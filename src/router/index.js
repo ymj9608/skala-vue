@@ -29,6 +29,16 @@ const router = createRouter({
       component: () => import('../views/WeatherTipsView.vue'),
     },
     {
+      path: '/community',
+      name: 'weather-community',
+      component: () => import('../views/WeatherCommunityView.vue'),
+    },
+    {
+      path: '/community/write',
+      name: 'weather-community-write',
+      component: () => import('../views/WeatherCommunityWriteView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('../views/NotFoundView.vue'),

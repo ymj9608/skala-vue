@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import axios from 'axios'
 import { RouterLink, useRoute } from 'vue-router'
 import { useConfigStore } from '../stores/configStore.js'
+import AppIcon from '../components/exercise/AppIcon.vue'
 
 const route = useRoute()
 const configStore = useConfigStore()
@@ -19,9 +20,13 @@ const errorMessage = ref('')
 
 const cityList = [
   { id: 'city_01', name: '서울특별시', lat: 37.5665, lon: 126.978 },
-  { id: 'city_02', name: '경기도 수원시', lat: 37.2636, lon: 127.0286 },
-  { id: 'city_03', name: '부산광역시', lat: 35.1796, lon: 129.0756 },
-  { id: 'city_04', name: '대전광역시', lat: 36.3504, lon: 127.3845 },
+  { id: 'city_02', name: '부산광역시', lat: 35.1796, lon: 129.0756 },
+  { id: 'city_03', name: '대구광역시', lat: 35.8714, lon: 128.6014 },
+  { id: 'city_04', name: '인천광역시', lat: 37.4563, lon: 126.7052 },
+  { id: 'city_05', name: '광주광역시', lat: 35.1595, lon: 126.8526 },
+  { id: 'city_06', name: '대전광역시', lat: 36.3504, lon: 127.3845 },
+  { id: 'city_07', name: '울산광역시', lat: 35.5384, lon: 129.3114 },
+  { id: 'city_08', name: '세종특별자치시', lat: 36.48, lon: 127.289 },
 ]
 
 const displayTemp = computed(() => {
@@ -141,7 +146,7 @@ onMounted(() => {
 <template>
   <main class="detail-view">
     <section class="detail-card">
-      <h2>📊 지역별 상세 기상 관측 정보</h2>
+      <h2><AppIcon name="chart" :size="22" /> 지역별 상세 기상 관측 정보</h2>
 
       <el-skeleton v-if="isLoading" class="api-message" :rows="5" animated />
 
@@ -152,7 +157,7 @@ onMounted(() => {
 
       <template v-else-if="selectedWeather">
         <div class="weather-detail">
-          <p>📍 지정 지역: 대한민국 {{ selectedWeather.name }}</p>
+          <p><AppIcon name="pin" :size="17" /> 지정 지역: 대한민국 {{ selectedWeather.name }}</p>
           <p>실시간 기온: {{ displayTemp }}{{ configStore.unitSymbol }}</p>
           <p>체감 온도: {{ convertTemp(selectedWeather.feelsLike) }}{{ configStore.unitSymbol }}</p>
           <p v-if="configStore.showWeatherStatus">기상 현황: {{ selectedWeather.status }}</p>
@@ -162,7 +167,7 @@ onMounted(() => {
         </div>
 
         <section class="extra-section">
-          <h3>🕒 OpenWeather 시간대별 예보</h3>
+          <h3><AppIcon name="clock" :size="19" /> OpenWeather 시간대별 예보</h3>
           <div class="forecast-list">
             <div v-for="forecast in forecastList" :key="forecast.date" class="forecast-item">
               <p>{{ forecast.date }}</p>
@@ -173,7 +178,7 @@ onMounted(() => {
         </section>
 
         <section v-if="airQuality" class="extra-section">
-          <h3>🌿 Open-Meteo 대기질</h3>
+          <h3><AppIcon name="leaf" :size="19" /> Open-Meteo 대기질</h3>
           <div class="air-quality">
             <p>통합 대기질: {{ airQuality.us_aqi }} ({{ airQualityLabel }})</p>
             <p>미세먼지 PM10: {{ airQuality.pm10 }}㎍/㎥</p>
@@ -201,6 +206,9 @@ onMounted(() => {
 }
 
 h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 18px;
   padding-bottom: 12px;
   border-bottom: 1px solid #dfe6eb;
@@ -217,6 +225,9 @@ h2 {
 }
 
 .weather-detail p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 3px 0;
 }
 
@@ -240,6 +251,9 @@ h2 {
 }
 
 .extra-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   margin: 0 0 12px;
   color: #294b66;
   font-size: 17px;

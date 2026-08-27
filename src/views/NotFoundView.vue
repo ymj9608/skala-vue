@@ -1,11 +1,12 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import AppIcon from '../components/exercise/AppIcon.vue'
 </script>
 
 <template>
   <main class="not-found-view">
     <section class="not-found-card">
-      <p class="not-found-icon">☀️❓</p>
+      <p class="not-found-icon"><AppIcon name="alert" :size="48" /></p>
       <h2>페이지를 찾을 수 없습니다.</h2>
       <p>요청하신 주소가 존재하지 않거나 아직 개발되지 않았습니다.</p>
       <RouterLink class="home-link" to="/">날씨 메인으로 이동</RouterLink>
