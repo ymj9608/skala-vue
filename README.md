@@ -29,7 +29,7 @@ Components에서 App과 AboutView의 컴포넌트 구조를 확인했다.
 ![결과0-1](hands_on/과제0실행결과1.png)
 ![결과0-2](hands_on/과제0실행결과2.png)
 
-### 2. 과제 1 날씨 데이터 출력
+### 과제 1. Weather Mockup
 
 파일 위치: `src/components/handon/HandOnFirst.vue`
 
@@ -123,7 +123,7 @@ const weatherList = ref([
 
    처음에는 날씨 카드 전체 태그에 `v-if`를 적용하여 날씨에 따른 라벨을 표시하려고 했다. 그 결과 조건과 스타일이 카드 전체에 적용되는 문제가 발생했다. 도시 이름과 현재 기온처럼 항상 표시되는 부분은 공통으로 작성하고, 조건에 따라 달라지는 라벨 `<p>` 태그에만 `v-if`와 `v-else`를 적용했다. 이를 통해 카드의 공통 내용은 유지하면서 기온에 맞는 라벨만 다르게 표시할 수 있었다.
 
-### 3. 과제 2 도시 검색 기능
+### 과제 2. Weather Composition
 
 파일 위치: `src/components/handon/HandOnSecond.vue`
 
@@ -215,7 +215,7 @@ watch(hotCityClickCount, (newValue) => {
 
    `watch`는 `selectedCity`, `hotCityClickCount`처럼 감시할 대상을 직접 지정하고, 값이 변경되었을 때 필요한 로그를 출력하는 데 사용했다. `watchEffect`는 함수 내부에서 사용하는 `searchCity`를 자동으로 추적하므로 검색어를 입력할 때마다 현재 검색어가 콘솔에 출력되었다. 이를 통해 특정 상태를 선택해서 감시할 때는 `watch`, 함수에서 사용하는 반응형 상태를 자동으로 감시할 때는 `watchEffect`를 사용할 수 있다는 점을 배웠다.
 
-### 4. 과제 3 날씨 컴포넌트 분리
+### 과제 3. Weather Component
 
 파일 위치: `src/components/handon/handon_third/`
 
@@ -333,7 +333,7 @@ const emit = defineEmits(['select-card', 'click-detail'])
 
    검색 영역과 날씨 목록 영역은 내부 내용은 다르지만 박스의 테두리, 배경, 여백 디자인은 같았다. 공통 디자인을 `BaseDashboardCard.vue`로 옮기고 내용이 들어갈 위치에 `<slot />`을 배치했다. 부모에서 Slot 내부에 전달한 `SearchBar`와 `WeatherCard`는 시각적으로 공통 박스 안에 표시되면서도 부모의 데이터 및 이벤트와 직접 바인딩할 수 있다는 점을 배웠다.
 
-### 5. 과제 4 Vue Router 적용
+### 과제 4. Weather Router
 
 과제 3의 날씨 대시보드를 페이지 단위의 View와 재사용 컴포넌트로 나누고 Vue Router를 연결했다.
 
@@ -421,7 +421,7 @@ const showDetail = (weather) => {
 
    상세보기 버튼에서 `router.push()`로 도시 ID가 포함된 주소를 만들고, 상세 View에서는 `route.params.cityId`로 해당 값을 받았다. 하나의 상세 View를 여러 도시가 함께 사용하면서도 도시 ID에 맞는 정보를 각각 표시할 수 있다는 점을 배웠다.
 
-### 6. 과제 5 Weather Store
+### 과제 5. Weather Store
 
 파일 위치:
 
@@ -513,7 +513,7 @@ function toggleWeatherStatus() {
 
 2. Store의 state는 원본 상태, getter는 state를 이용한 계산 결과, action은 state를 변경하는 기능을 담당한다. 각 역할을 분리하여 단위와 날씨 상태 표시 설정을 관리할 수 있었다.
 
-### 7. 과제 6 Weather Axios
+### 과제 6. Weather Axios
 
 Axios와 OpenWeather API를 사용하여 Mock Data를 실제 날씨 데이터로 변경했다. API를 호출하는 Vue 파일의 `<script setup>` 영역에 `API_KEY`를 선언하여 사용했다.
 
@@ -615,7 +615,7 @@ router.push('/map-weather/' + lat + '/' + lon + '?region=' + region)
 
 2. `async/await`로 API 응답을 기다리고 `try/catch/finally`를 이용해 성공, 실패, 로딩 종료 상태를 나누어 처리할 수 있었다. 지도 클릭 이벤트에서 얻은 좌표도 OpenWeather API의 요청 값으로 사용할 수 있었다.
 
-### 8. 과제 7 Weather UI Library
+### 과제 7. Weather UI Library
 
 외부 UI Library로 Vue 3에서 사용할 수 있는 Element Plus를 선정했다. 기존 날씨 데이터, Router, Store, Axios와 카카오맵 기능은 유지하고 버튼과 상태 표시 디자인에 Element Plus 컴포넌트를 적용했다.
 
@@ -685,7 +685,7 @@ Axios 통신 중에는 `el-skeleton`, 통신 실패 시에는 `el-alert`, 검색
 
 2. 직접 CSS를 작성했던 버튼과 라벨을 UI 컴포넌트로 변경하고 속성으로 상태별 디자인을 지정할 수 있었다. 또한 Skeleton, Alert, Empty 컴포넌트를 사용하여 API의 로딩, 실패, 빈 결과 상태를 구분해서 보여줄 수 있었다.
 
-### 9. 과제 8 Weather Deployment
+### 과제 8. Weather Deployment
 
 제출할 Source Code의 품질을 점검하고 API Key를 환경 변수로 분리했다. 이후 Project를 Build하여 서버에 Hosting할 수 있는 정적 파일을 생성했다.
 
