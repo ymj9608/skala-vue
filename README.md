@@ -840,10 +840,10 @@ Hash 뒤의 경로는 서버에 요청되지 않으므로 GitHub Pages에서 상
 
 본 프로젝트는 Vue 학습을 위한 Frontend 프로젝트로, 별도의 Backend 없이 GitHub Pages에 정적 배포하였다.
 
-OpenWeather 및 카카오맵 API Key는 Source Code에 직접 작성하지 않고 `.env`와 GitHub Actions Secrets를 통해 관리하였다. 다만 Vite의 `VITE_*` 환경 변수는 Build 시 Client JavaScript에 포함되므로, Backend가 없는 정적 Frontend 환경에서는 OpenWeather API Key의 Browser 노출을 완전히 방지할 수 없다.
+OpenWeather 및 카카오맵 API Key는 Source Code에 직접 작성하지 않고 `.env`와 GitHub Actions Secrets를 통해 관리하였다. 이를 통해 실제 API Key가 Git Repository에 직접 포함되는 것은 방지하였다.
 
-이에 따라 과제 구현과 실행 화면 확인을 완료한 후 **OpenWeather API Key를 비활성화하였다.** 따라서 현재 공개된 배포 페이지에서는 OpenWeather API를 사용하는 실시간 날씨, 예보 및 일부 상세보기 기능이 정상적으로 동작하지 않을 수 있다.
+다만 Vite의 `VITE_*` 환경 변수는 Build 시 Client JavaScript에 포함되므로, Backend가 없는 정적 Frontend 환경에서는 Browser에서 API Key의 노출을 완전히 방지할 수 없다. 따라서 `.env`와 GitHub Actions Secrets를 사용하는 것은 Source Code 및 Git Repository에서 Key를 분리하기 위한 방법이며, Client에 전달되는 API Key 자체를 비공개로 유지하는 방법은 아니다.
 
-README의 실행 화면은 API Key가 활성화된 개발 및 테스트 단계에서 정상 동작을 확인한 결과이다.
+본 프로젝트는 학습 및 과제 수행을 목적으로 OpenWeather API의 무료 사용 범위 내에서 서비스를 구성하였으며, 위와 같은 Client-side API Key 관리의 보안상 한계를 인지한 상태에서 사용하고 있다. 실제 서비스 환경에서 비공개로 관리해야 하는 API Key를 사용하는 경우에는 Backend 또는 Serverless Function 등의 Server-side 환경에서 API 요청을 처리하도록 구성하는 것이 적절하다.
 
-카카오맵은 Browser 사용을 전제로 하는 JavaScript SDK Key와 등록된 Domain을 이용하여 구성하였다.
+카카오맵은 Browser 사용을 전제로 하는 JavaScript SDK Key를 사용하며, 등록된 Domain을 통해 사용할 수 있도록 구성하였다.
